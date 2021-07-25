@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Bookmark from "../../atomics/bookmark";
 import Dropdown from "../../atomics/dropdown";
 import { useFetch } from "../../atomics/fetcher";
+import LoadingRing from "../../atomics/loading";
 
 import styles from "./main.module.scss";
 
@@ -39,11 +40,15 @@ const Main = () => {
         )}
         {status === "error" && <div>{error}</div>}
         {status === "fetching" && (
-          <div className={`${styles["content-loading"]}`}>1231231</div>
+          <div className={`${styles["content-loading"]}`}>
+            <LoadingRing />
+          </div>
         )}
         {(status === "fetched" || status === "ok") && (
           <>
-            <div className={styles["content"]}> Search results for query</div>
+            <div className={styles["content"]}>
+              <LoadingRing />
+            </div>
           </>
         )}
       </main>

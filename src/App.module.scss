@@ -1,13 +1,14 @@
 @use "./assets/styles/global";
-@use "./assets/styles/main.scss" as main;
+@use "./assets/styles/main.scss" as css;
 
 .App {
-  position: relative;
+  background-color: var(--cl-background);
   height: 100vh;
+  position: relative;
 }
 
 .section-main {
-  @include main.d-flex-rel;
+  @include css.d-flex-rel;
 }
 
 @media screen and (min-width: 768px) {

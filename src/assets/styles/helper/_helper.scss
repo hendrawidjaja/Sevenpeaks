@@ -1,0 +1,12 @@
+@mixin hw($type: null, $value: 100%) {
+  @if $type == min {
+    min-height: $value;
+    min-width: $value;
+  } @else if $type == max {
+    max-height: $value;
+    max-width: $value;
+  } @else if $type == eq {
+    height: $value;
+    width: $value;
+  }
+}

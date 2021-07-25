@@ -1,10 +1,14 @@
-@use "../../assets/styles/main.scss" as main;
+@use "../../assets/styles/main.scss" as css;
 
 $animate1: cubic-bezier(0.165, 0.84, 0.44, 1);
 $animate2: cubic-bezier(0.19, 1, 0.22, 1);
 
+$icon-m: 0.8rem;
+$icon-t: 1.2rem;
+$icon-d: 1.5rem;
+
 .container {
-  @include main.d-flex-rel;
+  @include css.d-flex-rel;
   align-items: center;
   height: 1.6rem;
   justify-content: space-between;
@@ -44,20 +48,18 @@ $animate2: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .wrapper-input {
-  @include main.d-flex-rel;
-  height: 100%;
-  width: 100%;
+  @include css.d-flex-rel;
+  @include css.same-hw(eq);
   overflow: hidden;
 
   input {
-    @include main.d-flex-abs;
-    @include main.space(padding, x, 0.6rem);
+    @include css.d-flex-abs;
+    @include css.space(padding, x, 0.6rem);
+    @include css.same-hw(eq);
     background-color: #2153a3;
     color: #c6c6c6;
     font-size: 0.75rem;
-    height: 100%;
     right: 0;
-    width: 100%;
 
     &::placeholder {
       color: #c6c6c6;
@@ -68,21 +70,19 @@ $animate2: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .wrapper-img {
-  @include main.d-flex-rel;
-  @include main.d-flex-center;
+  @include css.d-flex-rel;
+  @include css.d-flex-center;
   height: 100%;
-  width: 2rem;
   user-select: none;
+  width: 2rem;
 
   &:hover {
     cursor: pointer;
   }
 
   .icon {
-    min-height: 0.8rem;
-    max-height: 0.8rem;
-    min-width: 0.8rem;
-    max-width: 0.8rem;
+    @include css.same-hw(min, $icon-m);
+    @include css.same-hw(max, $icon-m);
   }
 }
 
@@ -103,10 +103,8 @@ $animate2: cubic-bezier(0.19, 1, 0.22, 1);
 
   .wrapper-img {
     .icon {
-      min-height: 1.2rem;
-      max-height: 1.2rem;
-      min-width: 1.2rem;
-      max-width: 1.2rem;
+      @include css.same-hw(min, $icon-t);
+      @include css.same-hw(max, $icon-t);
     }
   }
 }
@@ -118,8 +116,6 @@ $animate2: cubic-bezier(0.19, 1, 0.22, 1);
   }
 
   .wrapper-input {
-    height: 100%;
-
     input {
       padding: 0.5rem 1.5rem;
       font-size: 1.25rem;
@@ -135,10 +131,8 @@ $animate2: cubic-bezier(0.19, 1, 0.22, 1);
     width: 5rem;
 
     .icon {
-      min-height: 1.5rem;
-      max-height: 1.5rem;
-      min-width: 1.5rem;
-      max-width: 1.5rem;
+      @include css.same-hw(min, $icon-d);
+      @include css.same-hw(max, $icon-d);
     }
   }
 }

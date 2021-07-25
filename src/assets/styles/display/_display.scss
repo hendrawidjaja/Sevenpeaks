@@ -53,13 +53,9 @@
   @content;
 }
 
-@mixin grid {
-  display: grid;
-  @content;
-}
-
-@mixin grid-rel {
-  display: grid;
-  position: relative;
-  @content;
+@mixin abs-zero {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

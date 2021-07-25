@@ -1,7 +1,55 @@
-@use "../../assets/styles/main.scss" as main;
+@use "../../assets/styles/main.scss" as css;
+
+$fs-m: 0.6rem;
+$fs-t: 1.2rem;
+$fs-d: 1.4rem;
 
 .container {
-  @include main.d-flex-rel;
-  justify-content: flex-end;
+  @include css.d-flex-rel;
+  @include css.space(padding, y, 0.3rem);
+  align-items: center;
+  cursor: pointer;
+  gap: 0.5rem;
   width: 100%;
+}
+
+.active {
+  background-color: var(--cl-blue);
+
+  .text {
+    color: #ffffff;
+  }
+}
+
+.img {
+  @include css.same-hw(max, 0.8rem);
+}
+
+.text {
+  font-size: $fs-m;
+  white-space: nowrap;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    @include css.space(padding, all, 0.4rem);
+  }
+
+  .text {
+    font-size: $fs-t;
+  }
+
+  .img {
+    @include css.same-hw(max, 1.3rem);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .text {
+    font-size: $fs-d;
+  }
+
+  .img {
+    @include css.same-hw(max, 1.5rem);
+  }
 }

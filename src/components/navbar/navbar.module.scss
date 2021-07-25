@@ -1,9 +1,9 @@
-@use "../../assets/styles/main.scss" as main;
+@use "../../assets/styles/main.scss" as css;
 
-@include main.layout;
+@include css.layout;
 
 .nav {
-  @include main.d-flex-rel;
+  @include css.d-flex-rel;
   background-color: var(--cl-blue);
 }
 
@@ -12,7 +12,7 @@
 }
 
 .wrapper-img {
-  @include main.d-flex-rel;
+  @include css.d-flex-rel;
   width: 100%;
 
   .img {

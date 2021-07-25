@@ -1,0 +1,53 @@
+@use "../../assets/styles/main.scss" as css;
+
+$w-m: 2rem;
+$w-t: 3.5rem;
+$w-d: 4rem;
+
+@keyframes load3 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  @include css.same-hw(eq, $w-m);
+  animation: load3 1.4s infinite linear;
+  border-radius: 50%;
+  position: relative;
+}
+
+.loader:before,
+.loader:after {
+  @include css.d-abs-zero;
+  content: "";
+  position: absolute;
+}
+
+.loader:before {
+  @include css.same-hw(eq, 50%);
+  background: var(--cl-blue);
+  border-radius: 100% 0 0 0;
+}
+
+.loader:after {
+  @include css.same-hw(eq, 85%);
+  background: var(--cl-background);
+  border-radius: 50%;
+  margin: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .loader {
+    @include css.same-hw(eq, $w-t);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .loader {
+    @include css.same-hw(eq, $w-d);
+  }
+}
