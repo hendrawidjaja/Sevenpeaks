@@ -1,0 +1,48 @@
+@use "../../assets/styles/main.scss" as main;
+
+@include main.layout;
+
+.nav {
+  @include main.d-flex-rel;
+  background-color: var(--cl-blue);
+}
+
+.container {
+  height: var(--h-nav-m);
+}
+
+.wrapper-img {
+  @include main.d-flex-rel;
+  width: 100%;
+
+  .img {
+    object-fit: contain;
+    width: 42%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    height: var(--h-nav-t);
+  }
+
+  .wrapper-img {
+    .img {
+      width: 32%;
+    }
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    height: var(--h-nav-d);
+  }
+
+  .wrapper-img {
+    width: 100%;
+
+    .img {
+      width: 18%;
+    }
+  }
+}

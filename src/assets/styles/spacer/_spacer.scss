@@ -1,0 +1,39 @@
+@mixin ace($type: margin, $dir: all, $value: 1rem) {
+  @if $type == padding {
+    @if $dir == x {
+      padding-left: $value;
+      padding-right: $value;
+    } @else if $dir == y {
+      padding-top: $value;
+      padding-bottom: $value;
+    } @else if $dir == all {
+      padding: $value;
+    } @else if $dir == top {
+      padding-top: $value;
+    } @else if $dir == left {
+      padding-left: $value;
+    } @else if $dir == right {
+      padding-right: $value;
+    } @else {
+      padding-bottom: $value;
+    }
+  } @else {
+    @if $dir == x {
+      margin-left: $value;
+      margin-right: $value;
+    } @else if $dir == y {
+      margin-top: $value;
+      margin-bottom: $value;
+    } @else if $dir == all {
+      margin: $value;
+    } @else if $dir == top {
+      margin-top: $value;
+    } @else if $dir == left {
+      margin-left: $value;
+    } @else if $dir == right {
+      margin-right: $value;
+    } @else {
+      margin-bottom: $value;
+    }
+  }
+}

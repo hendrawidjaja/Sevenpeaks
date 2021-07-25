@@ -1,0 +1,18 @@
+@use "../../assets/styles/main.scss" as main;
+
+.container {
+  height: var(--h-footer-m);
+  background-color: var(--cl-blue);
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    height: var(--h-footer-t);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    height: var(--h-footer-d);
+  }
+}

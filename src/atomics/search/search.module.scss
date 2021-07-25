@@ -1,0 +1,144 @@
+@use "../../assets/styles/main.scss" as main;
+
+$animate1: cubic-bezier(0.165, 0.84, 0.44, 1);
+$animate2: cubic-bezier(0.19, 1, 0.22, 1);
+
+.container {
+  @include main.d-flex-rel;
+  align-items: center;
+  height: 1.6rem;
+  justify-content: space-between;
+  margin-top: auto;
+  width: 100%;
+
+  &.active {
+    background-color: #2153a3;
+    transition: all 0.5s $animate1;
+
+    .wrapper-input {
+      input {
+        left: 0;
+        transition: all 1s $animate2;
+      }
+    }
+
+    .wrapper-img {
+      background-color: #2153a3;
+    }
+  }
+
+  &.inactive {
+    transition: all 1.5s $animate1;
+
+    .wrapper-input {
+      input {
+        left: 1000px;
+        transition: all 1.5s $animate2;
+      }
+    }
+
+    .wrapper-img {
+      background-color: var(--cl-blue);
+    }
+  }
+}
+
+.wrapper-input {
+  @include main.d-flex-rel;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  input {
+    @include main.d-flex-abs;
+    @include main.space(padding, x, 0.6rem);
+    background-color: #2153a3;
+    color: #c6c6c6;
+    font-size: 0.75rem;
+    height: 100%;
+    right: 0;
+    width: 100%;
+
+    &::placeholder {
+      color: #c6c6c6;
+      font-size: 0.7rem;
+      letter-spacing: 0.2px;
+    }
+  }
+}
+
+.wrapper-img {
+  @include main.d-flex-rel;
+  @include main.d-flex-center;
+  height: 100%;
+  width: 2rem;
+  user-select: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .icon {
+    min-height: 0.8rem;
+    max-height: 0.8rem;
+    min-width: 0.8rem;
+    max-width: 0.8rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    height: 3rem;
+  }
+
+  .wrapper-input {
+    input {
+      font-size: 1.2rem;
+
+      &::placeholder {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .wrapper-img {
+    .icon {
+      min-height: 1.2rem;
+      max-height: 1.2rem;
+      min-width: 1.2rem;
+      max-width: 1.2rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    height: 3.6rem;
+    width: 80%;
+  }
+
+  .wrapper-input {
+    height: 100%;
+
+    input {
+      padding: 0.5rem 1.5rem;
+      font-size: 1.25rem;
+
+      &::placeholder {
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  .wrapper-img {
+    height: 3.5rem;
+    width: 5rem;
+
+    .icon {
+      min-height: 1.5rem;
+      max-height: 1.5rem;
+      min-width: 1.5rem;
+      max-width: 1.5rem;
+    }
+  }
+}

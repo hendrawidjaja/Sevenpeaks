@@ -1,0 +1,7 @@
+@use "../../assets/styles/main.scss" as main;
+
+.container {
+  @include main.d-flex-rel;
+  justify-content: flex-end;
+  width: 100%;
+}

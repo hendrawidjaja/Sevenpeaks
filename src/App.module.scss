@@ -1,0 +1,17 @@
+@use "./assets/styles/global";
+@use "./assets/styles/main.scss" as main;
+
+.App {
+  position: relative;
+  height: 100vh;
+}
+
+.section-main {
+  @include main.d-flex-rel;
+}
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 1280px) {
+}

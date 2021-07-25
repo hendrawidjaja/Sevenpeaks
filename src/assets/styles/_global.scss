@@ -1,0 +1,76 @@
+@use "../../assets/styles/main.scss" as main;
+@use "sass:math";
+
+:root {
+  --cl-blue: #0b357b;
+  --gutter: 1rem;
+  --h-nav-m: 3.25rem;
+  --h-nav-t: 5rem;
+  --h-nav-d: 5rem;
+  --h-footer-m: 3.25rem;
+  --h-footer-t: 5rem;
+  --h-footer-d: 4rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+button,
+input {
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: none;
+}
+
+ul {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+
+  li {
+    list-style-type: none;
+  }
+}
+
+select {
+  &:focus-visible {
+    outline: none;
+  }
+}

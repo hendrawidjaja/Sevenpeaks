@@ -1,0 +1,117 @@
+@use "../../assets/styles/main.scss" as main;
+
+@include main.layout;
+
+.container {
+  @include main.space(padding, y, 1.2rem);
+  flex-direction: column;
+  height: calc(calc(100vh - var(--h-nav-m)) - var(--h-footer-m));
+}
+
+.wrapper-header,
+.wrapper-filter {
+  @include main.d-flex-rel;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wrapper-header {
+}
+
+.header {
+  font-size: 1.2rem;
+  flex-basis: 50%;
+}
+
+.wrapper-filter {
+  gap: 1.5rem;
+  flex-basis: 50%;
+  width: 100%;
+}
+
+.wrapper-bookmark {
+  @include main.d-flex-rel;
+  flex-basis: 30%;
+}
+
+.wrapper-dropdown {
+  @include main.d-flex-rel;
+  flex-basis: 70%;
+}
+
+.wrapper-content {
+  @include main.d-flex-rel;
+  height: 100%;
+  width: 100%;
+}
+
+.content-loading,
+.content {
+  @include main.d-flex-rel;
+  @include main.d-flex-center;
+  width: 100%;
+}
+
+.content-loading {
+}
+
+.content {
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    @include main.space(padding, y, 2.5rem);
+    height: calc(calc(100vh - var(--h-nav-t)) - var(--h-footer-t));
+  }
+
+  .wrapper-header {
+  }
+
+  .header {
+  }
+
+  .wrapper-filter {
+    gap: 1.25rem;
+  }
+
+  .wrapper-bookmark {
+  }
+
+  .wrapper-dropdown {
+  }
+
+  .container-content {
+  }
+
+  .content-loading {
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    @include main.space(padding, y, 4.5rem);
+    height: calc(calc(100vh - var(--h-nav-d)) - var(--h-footer-d));
+  }
+
+  .header {
+    font-size: 3rem;
+    flex-basis: 70%;
+  }
+
+  .wrapper-filter {
+    flex-basis: 35%;
+    gap: 2rem;
+  }
+
+  .wrapper-bookmark {
+  }
+
+  .wrapper-dropdown {
+  }
+
+  .container-content {
+  }
+
+  .content-loading {
+  }
+}
