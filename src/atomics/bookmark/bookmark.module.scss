@@ -1,9 +1,5 @@
 @use "../../assets/styles/main.scss" as css;
 
-$fs-m: 0.6rem;
-$fs-t: 1.2rem;
-$fs-d: 1.4rem;
-
 .container {
   @include css.d-flex-rel;
   align-items: center;

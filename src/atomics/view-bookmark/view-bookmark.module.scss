@@ -1,6 +1,22 @@
+@use "../../assets/styles/main.scss" as css;
+
 .container {
   cursor: pointer;
 }
 
 .text {
+  font-size: var(--fs-s);
+  white-space: nowrap;
+}
+
+@media screen and (min-width: 768px) {
+  .text {
+    font-size: var(--fs-l);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .text {
+    font-size: var(--fs-xl);
+  }
 }

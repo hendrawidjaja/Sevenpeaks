@@ -13,7 +13,6 @@ const URL = `https://content.guardianapis.com/search?page=1&q=news&api-key=${API
 const Main = () => {
   const { status, data, error } = useFetch(URL);
   const [query, setQuery] = useState();
-  let category = {};
 
   useEffect(() => {
     data && setQuery(data?.response?.results);
@@ -21,13 +20,16 @@ const Main = () => {
     return () => {};
   }, [data]);
 
+  const handleClick = (item) => {
+    console.log("24", item);
+  };
+
   return (
     <section className={`${styles["container"]}`}>
       <div className={`${styles["wrapper-header"]}`}>
         <h2 className={`${styles["header"]}`}>Top Stories</h2>
 
         <div className={styles["wrapper-filter"]}>
-          <Bookmark />
           <ViewBookmark />
 
           <div className={`${styles["wrapper-dropdown"]}`}>
@@ -53,6 +55,7 @@ const Main = () => {
               return (
                 <li
                   key={index}
+                  onClick={() => handleClick(items)}
                   className={`${styles[`item`]} ${styles[`item-${index}`]}`}
                 >
                   <div className={`${styles["content-img-title"]}`}>

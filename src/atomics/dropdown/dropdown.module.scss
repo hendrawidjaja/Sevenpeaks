@@ -1,9 +1,5 @@
 @use "../../assets/styles/main.scss" as css;
 
-$fs-m: 0.6rem;
-$fs-t: 0.9rem;
-$fs-d: 1.2rem;
-
 .container {
   @include css.d-flex-rel;
   justify-content: flex-end;
@@ -36,7 +32,7 @@ $fs-d: 1.2rem;
   width: 100%;
 
   .title {
-    font-size: $fs-m;
+    font-size: var(--fs-s);
     white-space: nowrap;
   }
 }
@@ -74,7 +70,7 @@ $fs-d: 1.2rem;
   p {
     @include css.d-flex-rel;
     align-items: center;
-    font-size: $fs-m;
+    font-size: var(--fs-s);
     width: 100%;
   }
 
@@ -129,7 +125,7 @@ $fs-d: 1.2rem;
     @include css.space(padding, x, 0.5rem);
 
     .title {
-      font-size: $fs-t;
+      font-size: var(--fs-l);
     }
   }
 
@@ -137,7 +133,7 @@ $fs-d: 1.2rem;
     @include css.space(padding, all, 0.5rem);
 
     p {
-      font-size: $fs-t;
+      font-size: var(--fs-l);
     }
   }
 }
@@ -145,7 +141,7 @@ $fs-d: 1.2rem;
 @media screen and (min-width: 1280px) {
   .custom-select-trigger {
     .title {
-      font-size: $fs-d;
+      font-size: var(--fs-xl);
     }
   }
 
@@ -153,7 +149,7 @@ $fs-d: 1.2rem;
     height: 3rem;
 
     p {
-      font-size: $fs-d;
+      font-size: var(--fs-xl);
     }
   }
 }

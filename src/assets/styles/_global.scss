@@ -11,6 +11,13 @@
   --h-footer-m: 3.25rem;
   --h-footer-t: 5rem;
   --h-footer-d: 4rem;
+
+  --fs-xxs: 0.5rem;
+  --fs-xs: 0.6rem;
+  --fs-s: 0.65rem;
+  --fs-m: 0.8rem;
+  --fs-l: 1.1rem;
+  --fs-xl: 1.2rem;
 }
 
 * {
@@ -74,4 +81,9 @@ select {
   &:focus-visible {
     outline: none;
   }
+}
+
+img {
+  display: flex;
+  width: 100%;
 }
