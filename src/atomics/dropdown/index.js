@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import styles from "./dropdown.module.scss";
 
@@ -38,7 +38,7 @@ const Dropdown = () => {
               className={`${styles["custom-option"]}`}
               data-value={NEW}
             >
-              <p>Newest first</p>
+              <p>{NEW}</p>
             </li>
           )}
 
@@ -48,7 +48,7 @@ const Dropdown = () => {
               className={`${styles["custom-option"]}`}
               data-value={OLD}
             >
-              <p>Oldest first</p>
+              <p>{OLD}</p>
             </li>
           )}
 
@@ -58,7 +58,7 @@ const Dropdown = () => {
               className={`${styles["custom-option"]} `}
               data-value={POP}
             >
-              <p>Most popular</p>
+              <p>{POP}</p>
             </li>
           )}
         </ul>

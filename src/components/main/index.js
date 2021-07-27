@@ -1,19 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Bookmark from "../../atomics/bookmark";
 import Dropdown from "../../atomics/dropdown";
 import { useFetch } from "../../atomics/fetcher";
 import LoadingRing from "../../atomics/loading";
+import ViewBookmark from "../../atomics/view-bookmark";
 
 import styles from "./main.module.scss";
 
-const url =
-  "https://content.guardianapis.com/search?page=1&q=news&api-key=4a893e95-07ad-4f94-9ff3-e8672dfe8c25";
+const API_KEY = `${process.env.REACT_APP_GUARDIAN_KEY}`;
+const URL = `https://content.guardianapis.com/search?page=1&q=news&api-key=${API_KEY}&show-fields=thumbnail&show-blocks=all`;
 
 const Main = () => {
-  const { status, data, error } = useFetch(url);
+  const { status, data, error } = useFetch(URL);
+  const [query, setQuery] = useState();
+  let category = {};
 
   useEffect(() => {
-    data && console.log("25", data);
+    data && setQuery(data?.response?.results);
 
     return () => {};
   }, [data]);
@@ -24,9 +27,8 @@ const Main = () => {
         <h2 className={`${styles["header"]}`}>Top Stories</h2>
 
         <div className={styles["wrapper-filter"]}>
-          <div className={`${styles["wrapper-bookmark"]}`}>
-            <Bookmark />
-          </div>
+          <Bookmark />
+          <ViewBookmark />
 
           <div className={`${styles["wrapper-dropdown"]}`}>
             <Dropdown />
@@ -34,24 +36,40 @@ const Main = () => {
         </div>
       </div>
 
-      <main className={`${styles["wrapper-content"]}`}>
-        {status === "idle" && (
-          <div> Let's get started by searching for an article! </div>
-        )}
-        {status === "error" && <div>{error}</div>}
-        {status === "fetching" && (
-          <div className={`${styles["content-loading"]}`}>
-            <LoadingRing />
-          </div>
-        )}
-        {(status === "fetched" || status === "ok") && (
-          <>
-            <div className={styles["content"]}>
-              <LoadingRing />
-            </div>
-          </>
-        )}
-      </main>
+      {status === "idle" && (
+        <div> Let's get started by searching for an article! </div>
+      )}
+      {status === "error" && <div>{error}</div>}
+      {status === "fetching" && (
+        <div className={`${styles["content-loading"]}`}>
+          <LoadingRing />
+        </div>
+      )}
+      {(status === "fetched" || status === "ok") && (
+        <main className={`${styles["content"]}`}>
+          <ul className={`${styles[`list-item`]}`}>
+            {query?.map((items, index) => {
+              //console.log(items);
+              return (
+                <li
+                  key={index}
+                  className={`${styles[`item`]} ${styles[`item-${index}`]}`}
+                >
+                  <div className={`${styles["content-img-title"]}`}>
+                    {items.fields?.thumbnail && (
+                      <img src={items.fields?.thumbnail} alt="thumbnail" />
+                    )}
+
+                    <div className={`${styles["content-title"]}`}>
+                      <p className={`${styles["title"]}`}>{items?.webTitle}</p>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </main>
+      )}
     </section>
   );
 };

@@ -12,16 +12,12 @@ const Bookmark = () => {
   };
 
   return (
-    <div
-      className={`${styles["container"]} ${styles[active ? "active" : ""]}`}
-      onClick={() => handleClick()}
-    >
+    <div className={`${styles["container"]}`} onClick={() => handleClick()}>
       <img
         className={`${styles["img"]}`}
-        src={active ? iconOn : iconOff}
+        src={active ? iconOff : iconOn}
         alt="icon-bookmark"
       />
-      <p className={`${styles["text"]}`}>VIEW BOOKMARK</p>
     </div>
   );
 };

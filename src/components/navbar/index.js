@@ -7,8 +7,6 @@ import styles from "./navbar.module.scss";
 import { MyContext } from "../../context";
 
 const NavBar = () => {
-  const context = useContext(MyContext);
-
   return (
     <nav className={styles["nav"]}>
       <div className={styles["container"]}>

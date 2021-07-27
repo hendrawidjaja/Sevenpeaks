@@ -1,8 +1,8 @@
 @use "../../assets/styles/main.scss" as css;
 
 $fs-m: 0.6rem;
-$fs-t: 1.2rem;
-$fs-d: 1.4rem;
+$fs-t: 0.9rem;
+$fs-d: 1.2rem;
 
 .container {
   @include css.d-flex-rel;
@@ -65,6 +65,7 @@ $fs-d: 1.4rem;
 .custom-option {
   @include css.d-flex-rel;
   @include css.space(padding, y, 0.5rem);
+  background-color: #ffffff;
   color: #3b3b3b;
   cursor: pointer;
   transition: all 0.25s;

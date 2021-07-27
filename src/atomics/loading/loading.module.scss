@@ -35,7 +35,7 @@ $w-d: 4rem;
 
 .loader:after {
   @include css.same-hw(eq, 85%);
-  background: var(--cl-background);
+  background: #ffffff;
   border-radius: 50%;
   margin: auto;
 }

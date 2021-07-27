@@ -33,7 +33,9 @@ export const useFetch = (url) => {
         dispatch({ type: "FETCHED", payload: data });
       } else {
         try {
-          const response = await fetch(url);
+          const response = await fetch(url, {
+            headers: { "Content-Type": "application/json" },
+          });
           const data = await response.json();
           cache.current[url] = data;
           if (cancelRequest) return;
