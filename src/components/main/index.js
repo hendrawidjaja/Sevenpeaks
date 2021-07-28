@@ -67,7 +67,6 @@ const Main = () => {
             <main className={`${styles["content"]}`}>
               <ul className={`${styles[`list-item`]}`}>
                 {query?.map((items, index) => {
-                  //console.log(items);
                   return (
                     <li
                       key={index}

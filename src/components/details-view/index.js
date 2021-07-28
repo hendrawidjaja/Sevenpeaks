@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ACTIONS, BookContext } from "../../store/context";
 
+import { useStore } from "../../store/store";
 import iconBookmarkOn from "../../assets/images/icon-bookmarkon.svg";
 import iconBookmarkOff from "../../assets/images/icon-bookmarkoff.svg";
 import styles from "./detail-view.module.scss";
@@ -33,19 +34,24 @@ function formatDate(dateVal) {
 
 const DetailView = ({ data }) => {
   const [bookmark, setBookmark] = useState(false);
-  const { dispatch } = useContext(BookContext);
+  const context = useStore((state) => state);
 
   const handleClick = (object) => {
     setBookmark((prev) => !prev);
-
-    if (bookmark) {
-      dispatch({ type: ACTIONS.REMOVE, payload: {} });
+    if (context.books.length < 0) {
+      context.addBook(object);
     }
 
-    if (!bookmark) {
-      dispatch({ type: ACTIONS.ADD, payload: object });
+    if (context.books.length > 0) {
+      console.log(context.books);
     }
   };
+
+  useEffect(() => {
+    //console.log(context.books);
+
+    return () => {};
+  }, [context]);
 
   return (
     <section className={`${styles["container"]}`}>

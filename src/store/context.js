@@ -12,36 +12,25 @@ const initialState = {
   book: [],
 };
 
-const reducer = (state, action) => {
-  let newState;
-
+const reducer = (book, action) => {
   switch (action.type) {
     case ACTIONS.ADD: {
-      newState = { ...initialState.book, book: action.payload };
-
-      console.log(newState);
+      book = { ...book, book: action.payload };
       break;
     }
 
     case ACTIONS.REMOVE: {
-      newState = { ...initialState.book, book: action.payload };
-      console.log(newState);
-      break;
-    }
-
-    case ACTIONS.ROUTE: {
-      newState = { ...initialState.book, book: action.payload };
-      console.log(newState);
+      book = { book, book: action.payload };
       break;
     }
 
     default:
-      return state;
+      return book;
   }
 };
 
 export const BookProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, {});
 
   const contextValue = useMemo(() => {
     return { state, dispatch };
