@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import Search from "../../atomics/search";
 
 import logo from "../../assets/images/Logo_White.png";
 
 import styles from "./navbar.module.scss";
-import { MyContext } from "../../context";
 
 const NavBar = () => {
   return (

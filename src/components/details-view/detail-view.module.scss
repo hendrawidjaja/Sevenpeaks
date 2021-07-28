@@ -1,0 +1,246 @@
+@use "../../assets/styles/main.scss" as css;
+
+.container {
+  @include css.d-flex-rel;
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+  flex-direction: column;
+}
+
+.wrapper-bookmark {
+  @include css.d-flex-rel;
+  align-items: center;
+  cursor: pointer;
+
+  p {
+    font-size: 0.7rem;
+  }
+}
+
+.wrapper-bookmark-image,
+.wrapper-bookmark-text {
+  @include css.d-flex-rel;
+}
+
+.wrapper-bookmark-image {
+  margin-left: -0.4rem;
+  width: 7.5%;
+}
+
+.content {
+  @include css.d-flex-rel;
+  flex-direction: column;
+
+  h1 {
+    border-bottom: 1px solid #dedede;
+    width: 100%;
+  }
+}
+
+.wrapper-date {
+  position: relative;
+  padding-top: 1rem;
+
+  .date {
+    font-size: 0.8rem;
+  }
+}
+
+.content {
+  @include css.space(padding, y, 1rem);
+}
+
+.wrapper-title {
+  @include css.d-flex-rel;
+  border-bottom: 1px solid #cecece;
+}
+
+.title {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: 500;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.wrapper-text {
+  color: #444444;
+
+  h1 {
+    padding-top: 0.8rem;
+  }
+
+  p {
+    padding-top: 0.7rem;
+    line-height: 1.3;
+    font-size: 0.8rem;
+  }
+
+  figure {
+    width: 100%;
+  }
+
+  img {
+    object-fit: contain;
+    height: 100%;
+  }
+}
+
+.wrapper-content {
+  display: grid;
+  position: relative;
+}
+
+.content-image {
+  @include css.d-flex-rel;
+  align-items: center;
+  grid-row: 1;
+  margin-bottom: auto;
+
+  figure {
+    position: relative;
+  }
+
+  img {
+    object-fit: contain;
+    height: 100%;
+  }
+
+  figcaption {
+    color: #808080;
+    font-size: 0.65rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  $col-left-width: 62%;
+  $col-right-width: 35%;
+
+  .wrapper-bookmark-image {
+    width: 4%;
+  }
+
+  .content {
+    @include css.space(padding, y, 0);
+
+    h1 {
+      width: $col-left-width;
+    }
+  }
+
+  .wrapper-content {
+    grid-template-columns: $col-left-width $col-right-width;
+    gap: (100 - $col-left-width - $col-right-width);
+  }
+
+  .content-image {
+    padding-top: 0.75rem;
+    grid-column: 2;
+  }
+
+  .wrapper-date {
+    p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+  }
+
+  .title {
+    font-size: 2.2rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1rem;
+  }
+
+  .wrapper-text {
+    h1 {
+      padding-top: 1.5rem;
+      padding-bottom: 1.25rem;
+    }
+
+    h2 {
+      @include css.space(padding, y, 0.8rem);
+    }
+
+    p {
+      font-size: 0.8rem;
+      padding-top: 0.75rem;
+      line-height: 1.5;
+    }
+
+    img {
+      padding-top: 0.75rem;
+    }
+  }
+
+  .wrapper-text,
+  .content-image {
+    figcaption {
+      font-size: 0.65rem;
+      padding-top: 0.2rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  $col-left-width: 59%;
+  $col-right-width: 38%;
+
+  .container {
+    @include css.space(padding, y, 3rem);
+  }
+
+  .wrapper-bookmark {
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  .wrapper-bookmark-image {
+    width: 2.5%;
+  }
+
+  .content {
+    h1 {
+      width: $col-left-width;
+    }
+  }
+
+  .wrapper-content {
+    grid-template-columns: $col-left-width $col-right-width;
+    gap: (100 - $col-left-width - $col-right-width);
+  }
+
+  .wrapper-date {
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  .title {
+    font-size: 2.8rem;
+  }
+
+  .wrapper-text {
+    h2 {
+      padding-top: 1rem;
+      padding-bottom: 0.8rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      padding-top: 0.7rem;
+    }
+
+    img {
+      padding-top: 0.75rem;
+    }
+  }
+
+  .wrapper-text,
+  .content-image {
+    figcaption {
+      font-size: 0.75rem;
+      @include css.space(padding, y, 0.3rem);
+    }
+  }
+}

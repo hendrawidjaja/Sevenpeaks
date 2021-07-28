@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Bookmark from "../../atomics/bookmark";
-import Dropdown from "../../atomics/dropdown";
 import { useFetch } from "../../atomics/fetcher";
+import DetailView from "../../components/details-view";
+import Dropdown from "../../atomics/dropdown";
 import LoadingRing from "../../atomics/loading";
 import ViewBookmark from "../../atomics/view-bookmark";
+
+import iconBack from "../../assets/images/icon-back.svg";
 
 import styles from "./main.module.scss";
 
@@ -14,6 +16,8 @@ const Main = () => {
   const { status, data, error } = useFetch(URL);
   const [query, setQuery] = useState();
 
+  const [detailPage, setDetailPage] = useState();
+
   useEffect(() => {
     data && setQuery(data?.response?.results);
 
@@ -21,58 +25,76 @@ const Main = () => {
   }, [data]);
 
   const handleClick = (item) => {
-    console.log("24", item);
+    setDetailPage(item);
   };
 
   return (
     <section className={`${styles["container"]}`}>
-      <div className={`${styles["wrapper-header"]}`}>
-        <h2 className={`${styles["header"]}`}>Top Stories</h2>
+      {detailPage !== undefined && (
+        <div className={`${styles["wrapper-button"]}`}>
+          <img
+            onClick={() => handleClick(undefined)}
+            src={iconBack}
+            alt="icon-back"
+          />
+        </div>
+      )}
 
-        <div className={styles["wrapper-filter"]}>
-          <ViewBookmark />
+      {detailPage === undefined && (
+        <>
+          <div className={`${styles["wrapper-header"]}`}>
+            <h2 className={`${styles["header"]}`}>Top Stories</h2>
 
-          <div className={`${styles["wrapper-dropdown"]}`}>
-            <Dropdown />
+            <div className={styles["wrapper-filter"]}>
+              <ViewBookmark />
+
+              <div className={`${styles["wrapper-dropdown"]}`}>
+                <Dropdown />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {status === "idle" && (
-        <div> Let's get started by searching for an article! </div>
-      )}
-      {status === "error" && <div>{error}</div>}
-      {status === "fetching" && (
-        <div className={`${styles["content-loading"]}`}>
-          <LoadingRing />
-        </div>
-      )}
-      {(status === "fetched" || status === "ok") && (
-        <main className={`${styles["content"]}`}>
-          <ul className={`${styles[`list-item`]}`}>
-            {query?.map((items, index) => {
-              //console.log(items);
-              return (
-                <li
-                  key={index}
-                  onClick={() => handleClick(items)}
-                  className={`${styles[`item`]} ${styles[`item-${index}`]}`}
-                >
-                  <div className={`${styles["content-img-title"]}`}>
-                    {items.fields?.thumbnail && (
-                      <img src={items.fields?.thumbnail} alt="thumbnail" />
-                    )}
+          {status === "idle" && (
+            <div> Let's get started by searching for an article! </div>
+          )}
+          {status === "error" && <div>{error}</div>}
+          {status === "fetching" && (
+            <div className={`${styles["content-loading"]}`}>
+              <LoadingRing />
+            </div>
+          )}
+          {(status === "fetched" || status === "ok") && (
+            <main className={`${styles["content"]}`}>
+              <ul className={`${styles[`list-item`]}`}>
+                {query?.map((items, index) => {
+                  //console.log(items);
+                  return (
+                    <li
+                      key={index}
+                      onClick={() => handleClick(items)}
+                      className={`${styles[`item`]} ${styles[`item-${index}`]}`}
+                    >
+                      <div className={`${styles["content-img-title"]}`}>
+                        {items.fields?.thumbnail && (
+                          <img src={items.fields?.thumbnail} alt="thumbnail" />
+                        )}
 
-                    <div className={`${styles["content-title"]}`}>
-                      <p className={`${styles["title"]}`}>{items?.webTitle}</p>
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </main>
+                        <div className={`${styles["content-title"]}`}>
+                          <p className={`${styles["title"]}`}>
+                            {items?.webTitle}
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </main>
+          )}
+        </>
       )}
+
+      {detailPage !== undefined && <DetailView data={detailPage} />}
     </section>
   );
 };

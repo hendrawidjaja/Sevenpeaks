@@ -1,19 +1,18 @@
-import { MyContextProvider } from "./context/index";
-
-import NavBar from "./components/navbar";
-import Main from "./components/main";
 import Footer from "./components/footer";
+import Main from "./components/main";
+import NavBar from "./components/navbar";
+import { BookProvider } from "./store/context";
 
 import styles from "./App.module.scss";
 
 function App() {
   return (
     <div className={styles["App"]}>
-      <MyContextProvider>
+      <BookProvider>
         <NavBar />
         <Main />
         <Footer />
-      </MyContextProvider>
+      </BookProvider>
     </div>
   );
 }
