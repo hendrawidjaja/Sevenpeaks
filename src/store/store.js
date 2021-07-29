@@ -1,15 +1,24 @@
 import create from "zustand";
 import { persist } from "zustand/middleware";
 
-export const useStore = create(
+const useStore = create(
   persist(
     (set, get) => ({
-      books: [],
-      addBook: (book) =>
-        set((state) => ({ books: [...state.books, { book }] })),
+      sortActive: "Newest first",
+      searchString: "",
+
+      updateSortActive: (sortActive) => {
+        set({ sortActive });
+      },
+
+      updateSearchString: (searchString) => {
+        set({ searchString });
+      },
     }),
     {
-      name: "hendra-store",
+      name: "HendraStore",
     }
   )
 );
+
+export default useStore;

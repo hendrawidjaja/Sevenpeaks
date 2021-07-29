@@ -3,9 +3,7 @@ import React from "react";
 import styles from "./view-bookmark.module.scss";
 
 const ViewBookmark = () => {
-  const handleClick = () => {
-    console.log("123");
-  };
+  const handleClick = () => {};
 
   return (
     <div className={`${styles["container"]}`} onClick={() => handleClick()}>

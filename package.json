@@ -22,8 +22,14 @@
   "eslintConfig": {
     "rules": {
       "no-console": "off",
-      "no-unused-vars": "off"
-    }
+      "no-unused-vars": "off",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "off"
+    },
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [

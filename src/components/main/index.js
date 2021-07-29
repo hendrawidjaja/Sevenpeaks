@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useFetch } from "../../atomics/fetcher";
+
+import useContextStore from "../../store/store";
+
 import DetailView from "../../components/details-view";
 import Dropdown from "../../atomics/dropdown";
 import LoadingRing from "../../atomics/loading";
@@ -9,24 +12,58 @@ import iconBack from "../../assets/images/icon-back.svg";
 
 import styles from "./main.module.scss";
 
+import { DROPDOWN } from "../../constant/index";
+const { NEW, OLD } = DROPDOWN;
+
 const API_KEY = `${process.env.REACT_APP_GUARDIAN_KEY}`;
 const URL = `https://content.guardianapis.com/search?page=1&q=news&api-key=${API_KEY}&show-fields=thumbnail&show-blocks=all`;
 
 const Main = () => {
   const { status, data, error } = useFetch(URL);
+  const [originalQuery, setOriginalQuery] = useState();
   const [query, setQuery] = useState();
-
   const [detailPage, setDetailPage] = useState();
 
-  useEffect(() => {
-    data && setQuery(data?.response?.results);
-
-    return () => {};
-  }, [data]);
+  const context = useContextStore((state) => state);
 
   const handleClick = (item) => {
     setDetailPage(item);
   };
+
+  useEffect(() => {
+    data?.response?.results && setOriginalQuery(data);
+
+    setQuery(
+      data?.response?.results
+        .map((item) => {
+          return item;
+        })
+        .sort((a, b) => {
+          return context.sortActive === NEW
+            ? new Date(b.webPublicationDate) - new Date(a.webPublicationDate)
+            : context.sortActive === OLD
+            ? new Date(a.webPublicationDate) - new Date(b.webPublicationDate)
+            : setQuery(originalQuery);
+        })
+    );
+
+    return () => {};
+  }, [data, context, originalQuery]);
+
+  useEffect(() => {
+    query &&
+      query.filter((item) => {
+        console.log(
+          item.webTitle.toLowerCase() === context.searchString.toLowerCase(),
+          context.searchString
+        );
+        return (
+          item.webTitle.toLowerCase() === context.searchString.toLowerCase()
+        );
+      });
+
+    return () => {};
+  }, [context]);
 
   return (
     <section className={`${styles["container"]}`}>

@@ -5,32 +5,31 @@ export const BookContext = createContext();
 export const ACTIONS = {
   ADD: "add",
   REMOVE: "remove",
-  ROUTE: "route",
+  TOGGLE: "toggle",
 };
 
-const initialState = {
-  book: [],
+const initial = {
+  books: [],
+  sortedBy: "Newest first",
 };
 
-const reducer = (book, action) => {
+const reducer = (state, action) => {
   switch (action.type) {
-    case ACTIONS.ADD: {
-      book = { ...book, book: action.payload };
-      break;
+    case ACTIONS.TOGGLE: {
+      return state.books.push(action.payload);
     }
 
     case ACTIONS.REMOVE: {
-      book = { book, book: action.payload };
       break;
     }
 
     default:
-      return book;
+      return state;
   }
 };
 
 export const BookProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, {});
+  const [state, dispatch] = useReducer(reducer, initial);
 
   const contextValue = useMemo(() => {
     return { state, dispatch };

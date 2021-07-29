@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import useContextStore from "../../store/store";
 
 import styles from "./dropdown.module.scss";
 
@@ -7,16 +8,24 @@ const { NEW, OLD, POP } = DROPDOWN;
 
 const Dropdown = () => {
   const [active, setActive] = useState(false);
-  const [name, setName] = useState("Newest first");
+  const [name, setName] = useState(NEW);
+
+  const context = useContextStore((state) => state);
 
   const handleClickSelect = () => {
     setActive((prev) => !prev);
   };
 
   const handleClick = (id) => {
-    setName(id);
     setActive((prev) => !prev);
+    setName(id);
   };
+
+  useEffect(() => {
+    context.updateSortActive(name);
+    return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name]);
 
   return (
     <div className={`${styles["container"]}`}>

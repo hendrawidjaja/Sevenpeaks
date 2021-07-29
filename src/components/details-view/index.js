@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ACTIONS, BookContext } from "../../store/context";
 
 import { useStore } from "../../store/store";
+
 import iconBookmarkOn from "../../assets/images/icon-bookmarkon.svg";
 import iconBookmarkOff from "../../assets/images/icon-bookmarkoff.svg";
 import styles from "./detail-view.module.scss";
@@ -9,49 +10,44 @@ import styles from "./detail-view.module.scss";
 function padValue(value) {
   return value < 10 ? "0" + value : value;
 }
+
 function formatDate(dateVal) {
   const newDate = new Date(dateVal);
-  const sMonth = padValue(newDate.getMonth() + 1);
-  const sDay = padValue(newDate.getDate());
-  const sYear = newDate.getFullYear();
-  let sHour = newDate.getHours();
-  let sMinute = padValue(newDate.getMinutes());
-  let sAMPM = "AM";
+  const _month = padValue(newDate.getMonth() + 1);
+  const _day = padValue(newDate.getDate());
+  const _year = newDate.getFullYear();
+  let _hour = newDate.getHours();
+  let _minute = padValue(newDate.getMinutes());
+  let _AMPM = "AM";
 
-  let iHourCheck = parseInt(sHour);
+  let iHourCheck = parseInt(_hour);
 
   if (iHourCheck > 12) {
-    sAMPM = "PM";
-    sHour = iHourCheck - 12;
+    _AMPM = "PM";
+    _hour = iHourCheck - 12;
   } else if (iHourCheck === 0) {
-    sHour = "12";
+    _hour = "12";
   }
 
-  sHour = padValue(sHour);
+  _hour = padValue(_hour);
 
-  return `${sMonth} ${sDay} ${sYear} ${sHour}:${sMinute} ${sAMPM}`;
+  return `${_month} ${_day} ${_year} ${_hour}:${_minute} ${_AMPM}`;
 }
 
 const DetailView = ({ data }) => {
   const [bookmark, setBookmark] = useState(false);
-  const context = useStore((state) => state);
+  const { state, dispatch } = useContext(BookContext);
 
   const handleClick = (object) => {
     setBookmark((prev) => !prev);
-    if (context.books.length < 0) {
-      context.addBook(object);
-    }
 
-    if (context.books.length > 0) {
-      console.log(context.books);
-    }
+    dispatch({ type: ACTIONS.ADD, payload: object });
   };
 
   useEffect(() => {
-    //console.log(context.books);
-
+    console.log(state);
     return () => {};
-  }, [context]);
+  }, [state]);
 
   return (
     <section className={`${styles["container"]}`}>
